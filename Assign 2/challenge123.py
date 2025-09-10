@@ -96,6 +96,9 @@ class DatabaseManager:
                 books.append(Book(title, author, isbn))
         return books
     
+    def close_connection(self):
+        self.mydb.close()
+    
     def __str__(self):
         if not self.books:
             return "No books found."
@@ -228,7 +231,11 @@ if __name__ == '__main__':
                 for book in books:
                     print(book)
                 print("\n✅ Books loaded successfully!")
-            
+        
+        elif choice == "5":
+            print("Exiting the program. Goodbye!")
+            mydb.close_connection()
+            break
         else:
             print("❌ Invalid choice! Please select 1, 2, 3, 4, or 5.")
             time.sleep(1)
